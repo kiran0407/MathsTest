@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+   android:background="#1E2538"
+    android:id="@+id/nnmmkk"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="kiran541.ench.com.mathstest.StartGame"
+    tools:showIn="@layout/activity_start_game">
+
+    <ProgressBar
+        android:id="@+id/progressBarCircle"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/drawable_circle_dark_blue"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="100"
+        android:progressDrawable="@drawable/drawable_circle_yellow"
+        android:rotation="100"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true" />
+
+
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textColor="@color/colorYellow"
+        android:textSize="40sp"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp" />
+
+    <ImageView
+        android:id="@+id/imageViewReset"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/textViewTime"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="7dp"
+
+
+        />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/progressBarCircle"
+    android:layout_marginTop="20dp">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:weightSum="2"
+        android:orientation="horizontal" >
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/playagain"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+android:visibility="gone"
+            android:layout_weight="0.22"
+            android:layout_marginLeft="29dp"
+            android:layout_marginRight="10dp"
+            android:minHeight="@dimen/demo_button_min_height"
+            android:minWidth="110dp"
+            android:text="play again"
+            android:paddingRight="15dp"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:drawableLeft="@drawable/ic_slow_motion_video_black_24dp"
+            fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
+            fbutton:shadowEnabled="true" />
+        <info.hoang8f.widget.FButton
+            android:id="@+id/share"
+
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_weight="0.55"
+            android:minHeight="@dimen/demo_button_min_height"
+            android:textSize="20sp"
+            android:minWidth="110dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="share"
+            android:visibility="gone"
+          android:gravity="center"
+            android:drawableLeft="@drawable/ic_menu_share"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
+            fbutton:shadowEnabled="true" />
+
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        android:layout_below="@+id/progressBarCircle"
+        android:layout_marginTop="20dp">
+
+
+        <android.support.v7.widget.CardView
+            app:cardCornerRadius="5dp"
+            android:layout_margin="7dp"
+            android:elevation="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cardView1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1.2"
+                    android:id="@+id/question"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="6dp"
+                    android:text=""/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:focusableInTouchMode="false"
+                    android:focusable="false"
+                    android:id="@+id/str"
+                    android:background="@android:color/transparent"
+                    android:hint="   = ?"
+                    android:gravity="center"
+                    android:layout_weight="0.8"/>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/image"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:weightSum="3"
+            android:orientation="horizontal" >
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="110dp"
+                android:text="1"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+            <info.hoang8f.widget.FButton
+                android:id="@+id/btn2"
+                android:layout_width="110dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:textSize="20sp"
+                android:minWidth="110dp"
+                android:layout_marginRight="5dp"
+                android:text="2"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+            <info.hoang8f.widget.FButton
+                android:id="@+id/btn3"
+                android:layout_width="110dp"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:textSize="20sp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="110dp"
+                android:text="3"
+                android:layout_marginRight="15dp"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+
+
+        </LinearLayout>
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal" >
+            <info.hoang8f.widget.FButton
+                android:id="@+id/btn4"
+                android:layout_width="110dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="110dp"
+                android:textSize="20sp"
+                android:text="4"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+            <info.hoang8f.widget.FButton
+                android:id="@+id/btn5"
+                android:layout_width="110dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:textSize="20sp"
+                android:minWidth="110dp"
+                android:layout_marginRight="5dp"
+                android:text="5"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+            <info.hoang8f.widget.FButton
+                android:id="@+id/btn6"
+                android:layout_width="110dp"
+                android:layout_height="60dp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="110dp"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:text="6"
+                android:layout_marginRight="15dp"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:weightSum="3"
+            android:orientation="horizontal" >
+            <info.hoang8f.widget.FButton
+                android:id="@+id/btn7"
+                android:layout_width="110dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="110dp"
+                android:text="7"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+            <info.hoang8f.widget.FButton
+                android:id="@+id/btn8"
+                android:layout_width="110dp"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:layout_height="60dp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="110dp"
+                android:layout_marginRight="5dp"
+                android:text="8"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+            <info.hoang8f.widget.FButton
+                android:id="@+id/btn9"
+                android:layout_width="110dp"
+                android:layout_height="60dp"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="110dp"
+                android:text="9"
+                android:layout_marginRight="15dp"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:weightSum="3"
+            android:orientation="horizontal" >
+            <info.hoang8f.widget.FButton
+                android:id="@+id/btn0"
+                android:layout_width="110dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="110dp"
+                android:text="0"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+            <info.hoang8f.widget.FButton
+                android:id="@+id/dot"
+                android:layout_width="110dp"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:layout_height="60dp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="110dp"
+                android:layout_marginRight="5dp"
+                android:text="."
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+            <info.hoang8f.widget.FButton
+                android:id="@+id/enter"
+                android:layout_width="110dp"
+                android:layout_height="60dp"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="110dp"
+                android:text="clear"
+                android:layout_marginRight="15dp"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/textViewTime"
+        android:layout_marginLeft="28dp"
+        android:textColor="#F5FA55"
+        android:textSize="16sp"
+        android:layout_marginStart="28dp"
+        android:text="CORRECT" />
+
+    <TextView
+        android:id="@+id/correct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:layout_marginLeft="25dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text=""
+        android:layout_below="@+id/textViewTime"
+        />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textViewTime"
+        android:layout_marginEnd="25dp"
+        android:textColor="#F5FA55"
+        android:textSize="16sp"
+        android:layout_marginRight="29dp"
+        android:text="WRONG" />
+
+    <TextView
+        android:id="@+id/wrng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView4"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="-8dp"
+        android:layout_marginLeft="25dp"
+        android:text=""
+        android:textSize="20sp"
+        android:layout_alignStart="@+id/textView4"
+        android:layout_alignTop="@+id/imageViewReset"
+        />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/store_ans"
+    android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/total"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:textColor="#F5FA55"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_below="@+id/progressBarCircle"
+         />
+
+
+
+</RelativeLayout>
