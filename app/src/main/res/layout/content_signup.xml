@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#1E2538"
     android:layout_height="match_parent"
-    tools:context="kiran541.ench.com.mathstest.Signin">
-
+    android:background="#1E2538"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="kiran541.ench.com.mathstest.Signup"
+    tools:showIn="@layout/activity_signup">
 
     <LinearLayout
         android:id="@+id/login_layout"
@@ -20,13 +21,13 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:text="@string/login"
+            android:text="SIGNUP"
             android:textColor="@color/white_greyish"
             android:textSize="25sp"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/userid"
+            android:id="@+id/username"
             android:singleLine="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -36,12 +37,53 @@
             android:drawablePadding="8dp"
             android:gravity="center_vertical"
             android:hint="User Name"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:padding="10dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="16sp" />
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/white_greyish" />
+
+        <EditText
+            android:id="@+id/email"
+            android:singleLine="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="16sp" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/white_greyish" />
+
+        <EditText
+            android:id="@+id/phno"
+            android:singleLine="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_local_phone_black_24dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:hint="Phone Number"
+            android:inputType="number"
+            android:maxLength="10"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="16sp" />
         <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
@@ -63,47 +105,28 @@
             android:textColorHint="@color/white"
             android:textSize="16sp" />
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp"
-            android:paddingTop="8dp" >
-
-            <CheckBox
-                android:id="@+id/show_hide_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/show_pwd"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-
-        </LinearLayout>
 
         <Button
-            android:id="@+id/loginBtn"
+            android:id="@+id/signupBtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/buton_selector"
             android:padding="3dp"
-            android:text="@string/login"
+            android:text="signup"
             android:textColor="#1E2538"
             android:textSize="17sp"
             android:textStyle="bold" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/signuplink"
-            android:text="Doesn't have an Account? Signup"
+            android:id="@+id/signinlink"
+            android:text="Already have Account? Signin"
             android:textColor="#ffffff"
             android:gravity="center"
             android:layout_marginTop="15dp"
             android:textSize="14sp"/>
     </LinearLayout>
-
 
 
 

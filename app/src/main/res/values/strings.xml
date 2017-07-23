@@ -1,13 +1,12 @@
 <resources>
     <string name="app_name">Maths Quiz</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_start_game">StartGame</string>
     <string name="app_name1">Count Down Timer</string>
     <string name="hint_minute">Minute</string>
     <string name="order_food_title">Choose Level</string>
     <string name="confirm">Confirm</string>
     <string name="message_minutes">Please Enter Minutes...</string>
-    <string name="title_activity_high_score">HighScore</string>
+    <string name="title_activity_high_score">Maths Quiz</string>
 
     <string name="sharing_text">Your sharing text goes here…</string>
     <string name="share_title">Share Screenshot</string>
@@ -32,4 +31,5 @@
     <string name="registered_emailid">Please enter your Registered Email Id below:</string>
     <string name="submit">SUBMIT</string>
     <string name="back">BACK</string>
+    <string name="title_activity_signup">Signup</string>
 </resources>

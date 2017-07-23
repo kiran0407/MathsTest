@@ -3,8 +3,10 @@
     package="kiran541.ench.com.mathstest">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        android:name=".AppController"
         android:allowBackup="true"
         android:icon="@drawable/quiz"
         android:label="@string/app_name"
@@ -16,13 +18,11 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".StartGame"
@@ -45,9 +45,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="kiran541.ench.com.mathstest.MainActivity" />
         </activity>
-        <activity android:name=".Signin"
+        <activity
+            android:name=".Signin"
             android:screenOrientation="portrait">
 
+        </activity>
+        <activity
+            android:name=".Signup"
+            android:label="@string/title_activity_signup"
+            android:parentActivityName=".Signin"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="kiran541.ench.com.mathstest.Signin" />
         </activity>
     </application>
 

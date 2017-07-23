@@ -21,9 +21,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.sdsmdg.tastytoast.TastyToast;
 import com.yarolegovich.lovelydialog.LovelySaveStateHandler;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -32,7 +43,7 @@ import info.hoang8f.widget.FButton;
 public class StartGame extends AppCompatActivity  {
 TextView timer;
      long timeCountInMilliSeconds = 1 * 60000;
-
+    String user,umail,uid;
      enum TimerStatus {
         STARTED,
         STOPPED
@@ -53,14 +64,14 @@ String cal_answer;
      final int ADD_OPERATOR = 0, SUBTRACT_OPERATOR = 1, MULTIPLY_OPERATOR = 2, DIVIDE_OPERATOR = 3,MODULO_OPERATOR =4;
      String[] operators = {"+", "-", "x", "/"};
      int[][] levelMin = {
-            {1, 11, 21},
-            {1, 5, 10},
-            {2, 5, 10},
-            {2, 3, 5}};
+            {15, 11, 21},
+            {12, 54, 10},
+            {28, 5, 10},
+            {2, 13, 5}};
      int[][] levelMax = {
-            {10, 25, 50},
-            {10, 20, 30},
-            {5, 10, 15},
+            {10, 25, 150},
+            {120, 210, 30},
+            {5, 100, 15},
             {10, 50, 100}};
 
      Random random;
@@ -72,15 +83,22 @@ String cal_answer;
     Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0, enterBtn,dot;
      SharedPreferences gamePrefs;
     ImageView imageView;
+    String crctanswer,totalcnt,usernam,usermail;
     private RelativeLayout rootContent;
 
     public static final String GAME_PREFS = "ArithmeticFile";
+    SessionManager session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_game);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        session = new SessionManager(getApplicationContext());
+        HashMap<String, String> user1 = session.getUserDetails();
+        usernam = user1.get(SessionManager.KEY_NAME1);
+
+        usermail = user1.get(SessionManager.KEY_EMAIL1);
         gamePrefs = getSharedPreferences(GAME_PREFS, 0);
         imageView=(ImageView)findViewById(R.id.image);
         val=(EditText)findViewById(R.id.str);
@@ -107,6 +125,11 @@ String cal_answer;
         enterBtn = (FButton)findViewById(R.id.enter);
 //        clearBtn = (FButton)findViewById(R.id.clear);
         saveStateHandler = new LovelySaveStateHandler();
+        Intent intent = getIntent();
+        user = intent.getStringExtra("username");
+        umail = intent.getStringExtra("email");
+        uid = intent.getStringExtra("uid");
+
         playagain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -463,13 +486,17 @@ enterBtn.setOnClickListener(new View.OnClickListener() {
 //                        .setTitle("Game Completed")
 //                        .setMessage("Total Attempted  ="+total)
 //                        .show();
-
+                crctanswer=Integer.toString(countplus);
+                totalcnt=Integer.toString(total);
                 timerStatus = TimerStatus.STOPPED;
+                insert_service(usernam,totalcnt,crctanswer);
             }
 
         }.start();
         countDownTimer.start();
     }
+
+
     private void stopCountDownTimer() {
         countDownTimer.cancel();
     }
@@ -492,6 +519,45 @@ enterBtn.setOnClickListener(new View.OnClickListener() {
 
     }
 
+    private void insert_service(final String usernam, final String totalcnt, final String crctanswer) {
+
+        StringRequest stringreqs = new StringRequest(Request.Method.POST, MyGlobal_Url.MYBASIC_SCOREUPDATE, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    boolean abc = jObj.getBoolean("error");
+
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Toast.makeText(getApplicationContext(), "INTERNET CONNECTION NOT AVAILABLE", Toast.LENGTH_SHORT).show();
+                TastyToast.makeText(getApplicationContext(), "INTERNET CONNECTION NOT AVAILABLE", TastyToast.LENGTH_LONG,
+                        TastyToast.ERROR);
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> uandme = new HashMap<String, String>();
+                uandme.put("username", usernam);
+                uandme.put("total", totalcnt);
+                uandme.put("crct", crctanswer);
+                return uandme;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(stringreqs);
+
+    }
 
 
 }

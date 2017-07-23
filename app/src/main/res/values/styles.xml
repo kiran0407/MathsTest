@@ -6,6 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/fbutton_color_midnight_blue</item>
+
+
+        <!-- To change the background of options menu-->
+        <item name="android:itemBackground">@color/white</item>
     </style>
 
     <style name="CheckBoxTintTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -30,7 +34,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/white</item>
+
+        <!-- To change the background of options menu-->
+        <item name="android:itemBackground">@color/white</item>
     </style>
+
 
 
 </resources>

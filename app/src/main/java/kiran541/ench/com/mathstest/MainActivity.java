@@ -9,21 +9,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.yarolegovich.lovelydialog.LovelySaveStateHandler;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     EditText id;
     Button start,highscore;
-    String id1;
+    String id1,usernam,usermail;
     private String[] levelNames = {"Easy", "Medium", "Hard"};
     private static final int ID_MULTI_CHOICE_DIALOG = R.id.start_btn;
     private LovelySaveStateHandler saveStateHandler;
     final CharSequence[] items = {" Easy "," Medium "," Hard "," Very Hard "};
     SessionManager session;
     int chosenLevel=2;
+    String user,email,uid;
+    TextView nam;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +37,27 @@ public class MainActivity extends AppCompatActivity {
        // id=(EditText)findViewById(R.id.username);
         session = new SessionManager(getApplicationContext());
 
+      //  session.checkLogin();
+        HashMap<String, String> user1 = session.getUserDetails();
+        usernam = user1.get(SessionManager.KEY_NAME1);
+
+        usermail = user1.get(SessionManager.KEY_EMAIL1);
+
+        Intent intent = getIntent();
+        user = intent.getStringExtra("username");
+        email = intent.getStringExtra("email");
+        uid = intent.getStringExtra("uid");
+        nam=(TextView)findViewById(R.id.textView2);
+      //  setTitle(usernam);
+
         if (!session.isLoggedIn()) {
-            session.setLogin(false);
-            Intent intent = new Intent(MainActivity.this, Signin.class);
-            startActivity(intent);
+            session.createLoginSession(user, email,false);
+            Intent intent1 = new Intent(MainActivity.this, Signin.class);
+            startActivity(intent1);
             finish();
         }
+        nam.setText("Welcome  "+usernam);
+      //  Toast.makeText(getApplicationContext(), usernam, Toast.LENGTH_SHORT).show();
         saveStateHandler = new LovelySaveStateHandler();
         start=(Button)findViewById(R.id.start_btn);
         highscore=(Button)findViewById(R.id.high_btn);
@@ -46,7 +65,13 @@ public class MainActivity extends AppCompatActivity {
         highscore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,HighScore.class));
+             //   startActivity(new Intent(MainActivity.this,HighScore.class));
+                Intent intent = new Intent(MainActivity.this, HighScore.class);
+                intent.putExtra("username", user);
+                intent.putExtra("email", email);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
         start.setOnClickListener(new View.OnClickListener() {
@@ -56,9 +81,14 @@ public class MainActivity extends AppCompatActivity {
 
                     //startActivity(new Intent(MainActivity.this, StartGame.class));
 
-                Intent playIntent = new Intent(MainActivity.this, StartGame.class);
-                playIntent.putExtra("level", chosenLevel);
-                startActivity(playIntent);
+                Intent intent = new Intent(MainActivity.this, StartGame.class);
+                intent.putExtra("level", chosenLevel);
+                intent.putExtra("uid", uid);
+                intent.putExtra("username", user);
+                intent.putExtra("email", email);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
 //                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 //
 //
@@ -101,6 +131,11 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            session.logoutUser();
+            return true;
+        }
+
 
 
         return super.onOptionsItemSelected(item);
