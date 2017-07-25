@@ -36,11 +36,15 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
        // id=(EditText)findViewById(R.id.username);
         session = new SessionManager(getApplicationContext());
-
+        if (!session.isLoggedIn()) {
+            session.createLoginSession(user, email,false);
+            Intent intent1 = new Intent(MainActivity.this, Signin.class);
+            startActivity(intent1);
+            finish();
+        }
       //  session.checkLogin();
         HashMap<String, String> user1 = session.getUserDetails();
         usernam = user1.get(SessionManager.KEY_NAME1);
-
         usermail = user1.get(SessionManager.KEY_EMAIL1);
 
         Intent intent = getIntent();
@@ -50,12 +54,7 @@ public class MainActivity extends AppCompatActivity {
         nam=(TextView)findViewById(R.id.textView2);
       //  setTitle(usernam);
 
-        if (!session.isLoggedIn()) {
-            session.createLoginSession(user, email,false);
-            Intent intent1 = new Intent(MainActivity.this, Signin.class);
-            startActivity(intent1);
-            finish();
-        }
+
         nam.setText("Welcome  "+usernam);
       //  Toast.makeText(getApplicationContext(), usernam, Toast.LENGTH_SHORT).show();
         saveStateHandler = new LovelySaveStateHandler();
@@ -139,5 +138,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        // stopCountDownTimer();
+
+        moveTaskToBack(true);
     }
 }

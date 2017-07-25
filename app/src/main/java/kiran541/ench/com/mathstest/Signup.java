@@ -23,11 +23,13 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static kiran541.ench.com.mathstest.R.id.phno;
+
 public class Signup extends AppCompatActivity {
     TextView signinlink;
     Button signup;
     EditText usrname,umail,uphno,upswd;
-    String usrname1,umail1,uphno1,upswd1;
+    String usrname1,umail1,uphno1,upswd1,uname,uphnno,uemail=null,emailPattern;
     SessionManager session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +38,50 @@ public class Signup extends AppCompatActivity {
         signinlink=(TextView)findViewById(R.id.signinlink);
         usrname=(EditText)findViewById(R.id.username);
         umail=(EditText)findViewById(R.id.email);
-        uphno=(EditText)findViewById(R.id.phno);
+        uphno=(EditText)findViewById(phno);
         upswd=(EditText)findViewById(R.id.password);
         signup=(Button)findViewById(R.id.signupBtn);
         session = new SessionManager(getApplicationContext());
 
+        emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+//        Cursor c = getApplication().getContentResolver().query(ContactsContract.Profile.CONTENT_URI, null, null, null, null);
+//        c.moveToFirst();
+//        uname=c.getString(c.getColumnIndex("display_name"));
+//        if (c.moveToFirst()){
+//            // Toast.makeText(HomeScreen.this,b,Toast.LENGTH_SHORT).show();
+//            usrname.setText(uname);
+//        }
+//
+//        c.close();
+//
+//
+//        String main_data[] = {"data1", "is_primary", "data3", "data2", "data1", "is_primary", "photo_uri", "mimetype"};
+//        Object object = getContentResolver().query(Uri.withAppendedPath(android.provider.ContactsContract.Profile.CONTENT_URI, "data"),
+//                main_data, "mimetype=?",
+//                new String[]{"vnd.android.cursor.item/phone_v2"},
+//                "is_primary DESC");
+//        if (object != null) {
+//            do {
+//                if (!((Cursor) (object)).moveToNext())
+//                    break;
+//                uphnno= ((Cursor) (object)).getString(4);
+//                //Toast.makeText(HomeScreen.this,s1,Toast.LENGTH_SHORT).show();
+//                uphno.setText(uphnno);
+//
+//            } while (true);
+//            ((Cursor) (object)).close();
+//        }
+//
+//
+//        Pattern gmailPattern = Patterns.EMAIL_ADDRESS;
+//        Account[] accounts = AccountManager.get(this).getAccounts();
+//        for (Account account : accounts) {
+//            if (gmailPattern.matcher(account.name).matches()) {
+//                uemail = account.name;
+//            }
+//        }
+//
+//        umail.setText(uemail);
         signinlink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,12 +104,17 @@ public class Signup extends AppCompatActivity {
                 umail1=umail.getText().toString();
                 uphno1=uphno.getText().toString();
                 upswd1=upswd.getText().toString();
+
                 if(usrname1.isEmpty()){
                     TastyToast.makeText(getApplicationContext(), " please enter user name", TastyToast.LENGTH_LONG,
                             TastyToast.ERROR);
                 }
                 else if(umail1.isEmpty()){
                     TastyToast.makeText(getApplicationContext(), " please enter email adress", TastyToast.LENGTH_LONG,
+                            TastyToast.ERROR);
+                }
+                else if(!umail1.matches(emailPattern)){
+                    TastyToast.makeText(getApplicationContext(), " please enter valid email adress", TastyToast.LENGTH_LONG,
                             TastyToast.ERROR);
                 }
                 else if(uphno1.isEmpty()){

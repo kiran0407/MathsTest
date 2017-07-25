@@ -2,44 +2,64 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1E2538"
-   >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#1E2538">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="4">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:id="@+id/rank"
-        android:gravity="center"
-        android:layout_weight="1"
-        android:textColor="#ffffff"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:id="@+id/uname"
-        android:gravity="center"
-        android:layout_weight="1"
-        android:textColor="#ffffff"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:id="@+id/crct"
-        android:gravity="center_horizontal"
-        android:layout_weight="1"
-        android:textColor="#ffffff"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:id="@+id/total1"
-        android:gravity="center"
-        android:layout_weight="1"
-        android:textColor="#ffffff"/>
+        android:weightSum="5"
+       >
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/rank"
+                android:textColor="#ffffff"
+               android:paddingLeft="5dp"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:layout_gravity="center"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+android:layout_weight="2"
+                android:id="@+id/uname"
+                android:textColor="#ffffff"
+                android:text="fdsfsdfsdfs"
+                android:gravity="start"
+                android:layout_gravity="start|center"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/crct"
+                android:text="fdsfsdfsdf"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/total1"
+                android:text="dsaasd"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textSize="14sp" />
+
     </LinearLayout>
+
+
+
 </RelativeLayout>

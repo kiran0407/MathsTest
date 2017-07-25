@@ -37,6 +37,7 @@ public class HighScore extends AppCompatActivity {
     SessionManager session;
     String usernam,usermail,user,email,myurl,count;
     ListView scorelist;
+    TextView urank;
     int coun=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class HighScore extends AppCompatActivity {
             finish();
         }
         scorelist=(ListView)findViewById(R.id.scorelist);
+        urank=(TextView)findViewById(R.id.r1);
         myurl=MyGlobal_Url.MYBASIC_SCOREDETAILS+"?username="+usernam;
         new kilomilo().execute(myurl);
 
@@ -109,10 +111,15 @@ public class HighScore extends AppCompatActivity {
             //  holder.checkBox.setTag(position);
             Scores cc=movieModelList.get(position);
            // count=Integer.toString(coun);
-            holder.rank1.setText(Integer.toString(coun++));
+            holder.rank1.setText(cc.getRank());
             holder.uname1.setText(cc.getName());
             holder.crct1.setText(cc.getPoints());
             holder.total1.setText(cc.getTotal());
+            if(usernam.contains(cc.getName())){
+               urank.setText(cc.getRank());
+                holder.uname1.setText(cc.getName()+"*");
+
+            }
             //holder.tname.setText(getItem(position).getName());
 
 

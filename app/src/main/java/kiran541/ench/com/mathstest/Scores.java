@@ -13,6 +13,16 @@ public class Scores implements Parcelable {
     String phno;
     String points;
     String total;
+    String rank;
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
     public String getId() {
         return id;
     }
@@ -78,6 +88,7 @@ public class Scores implements Parcelable {
 
     protected Scores(Parcel in) {
         uid = in.readString();
+        rank=in.readString();
         id = in.readString();
         name = in.readString();
         email = in.readString();
@@ -90,6 +101,7 @@ public class Scores implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(uid);
         dest.writeString(id);
+        dest.writeString(rank);
         dest.writeString(name);
         dest.writeString(email);
         dest.writeString(phno);

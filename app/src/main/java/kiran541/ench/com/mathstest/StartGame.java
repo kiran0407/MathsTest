@@ -1,12 +1,15 @@
 package kiran541.ench.com.mathstest;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -49,7 +53,7 @@ TextView timer;
         STOPPED
     }
     CardView cardView;
-
+LinearLayout scr,scr1;
      TimerStatus timerStatus = TimerStatus.STOPPED;
      LovelySaveStateHandler saveStateHandler;
 String cal_answer;
@@ -66,7 +70,7 @@ String cal_answer;
      int[][] levelMin = {
             {15, 11, 21},
             {12, 54, 10},
-            {28, 5, 10},
+            {28, 15, 10},
             {2, 13, 5}};
      int[][] levelMax = {
             {10, 25, 150},
@@ -77,13 +81,13 @@ String cal_answer;
      Random random;
      TextView crct, wrong, question;
      ImageView response;
-    String level1;
+    String colchange;
     String st,ver;
     int crctans=1,wrongans=1,chec=0,countplus,decr,countminus,total;
     Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0, enterBtn,dot;
      SharedPreferences gamePrefs;
     ImageView imageView;
-    String crctanswer,totalcnt,usernam,usermail;
+    String crctanswer,totalcnt,usernam,usermail,email;
     private RelativeLayout rootContent;
 
     public static final String GAME_PREFS = "ArithmeticFile";
@@ -99,6 +103,14 @@ String cal_answer;
         usernam = user1.get(SessionManager.KEY_NAME1);
 
         usermail = user1.get(SessionManager.KEY_EMAIL1);
+        if (!session.isLoggedIn()) {
+            session.createLoginSession(user, email,false);
+            Intent intent1 = new Intent(StartGame.this, Signin.class);
+            startActivity(intent1);
+            finish();
+        }
+        scr=(LinearLayout)findViewById(R.id.scr);
+        scr1=(LinearLayout)findViewById(R.id.scr1);
         gamePrefs = getSharedPreferences(GAME_PREFS, 0);
         imageView=(ImageView)findViewById(R.id.image);
         val=(EditText)findViewById(R.id.str);
@@ -444,8 +456,12 @@ enterBtn.setOnClickListener(new View.OnClickListener() {
             public void onTick(long millisUntilFinished) {
 
                 textViewTime.setText(hmsTimeFormatter(millisUntilFinished));
-
+                colchange=textViewTime.getText().toString();
+//Toast.makeText(getApplicationContext(),colchange,Toast.LENGTH_LONG).show();
                 progressBarCircle.setProgress((int) (millisUntilFinished / 1000));
+                if(colchange.contains("00:10")){
+                    textViewTime.setTextColor(Color.RED);
+                }
 
 
             }
@@ -454,6 +470,7 @@ enterBtn.setOnClickListener(new View.OnClickListener() {
             public void onFinish() {
 
                textViewTime.setText("00:00");
+                textViewTime.setTextColor(Color.YELLOW);
                 setProgressBarValues();
 
                 total=countplus+countminus;
@@ -475,6 +492,8 @@ enterBtn.setOnClickListener(new View.OnClickListener() {
                 totalscore.setVisibility(View.VISIBLE);
                 share.setVisibility(View.VISIBLE);
                 playagain.setVisibility(View.VISIBLE);
+                scr.setVisibility(View.VISIBLE);
+                scr1.setVisibility(View.VISIBLE);
                 totalscore.setText("Total Questions Attempted  = "+total);
 //                MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.airhorn);
 //                mediaPlayer.start();
@@ -558,6 +577,60 @@ enterBtn.setOnClickListener(new View.OnClickListener() {
         AppController.getInstance().addToRequestQueue(stringreqs);
 
     }
+    @Override
+    public void onBackPressed() {
+       // stopCountDownTimer();
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setMessage("Are you sure want to Quit game? your score is not saved until you finished the game!!!");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //if user pressed "yes", then he is allowed to exit from application
 
+                moveTaskToBack(true);
+
+                stopCountDownTimer();
+                textViewTime.setText("00:00");
+                textViewTime.setTextColor(Color.YELLOW);
+                setProgressBarValues();
+
+                total=countplus+countminus;
+                cardView.setVisibility(View.INVISIBLE);
+                question.setVisibility(View.INVISIBLE);
+                val.setVisibility(View.INVISIBLE);
+                btn1.setVisibility(View.INVISIBLE);
+                btn2.setVisibility(View.INVISIBLE);
+                btn3.setVisibility(View.INVISIBLE);
+                btn4.setVisibility(View.INVISIBLE);
+                btn5.setVisibility(View.INVISIBLE);
+                btn6.setVisibility(View.INVISIBLE);
+                btn7.setVisibility(View.INVISIBLE);
+                btn8.setVisibility(View.INVISIBLE);
+                btn9.setVisibility(View.INVISIBLE);
+                btn0.setVisibility(View.INVISIBLE);
+                dot.setVisibility(View.INVISIBLE);
+                enterBtn.setVisibility(View.INVISIBLE);
+                totalscore.setVisibility(View.VISIBLE);
+                share.setVisibility(View.VISIBLE);
+                playagain.setVisibility(View.VISIBLE);
+                scr.setVisibility(View.VISIBLE);
+                scr1.setVisibility(View.VISIBLE);
+                totalscore.setText("Total Questions Attempted  = "+total);
+//
+
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //if user select "No", just cancel this dialog and continue with app
+                dialog.cancel();
+              //  startCountDownTimer();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 
 }
